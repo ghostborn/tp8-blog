@@ -1,4 +1,5 @@
 <?php
+
 namespace app\model;
 
 use think\Model;
@@ -9,7 +10,7 @@ class User extends Model
     protected $table = 'users';
 
     // 密码加密
-    public function setPasswordAttr($value)
+    public function setPasswordAttr($value): string
     {
         return password_hash($value, PASSWORD_DEFAULT);
     }
