@@ -37,6 +37,6 @@ Route::group('article', function () {
 })->middleware(\app\middleware\Auth::class);
 
 // 首页重定向
-Route::get('/', function () {
-    return redirect('/article');
-});
+//Route::get('/', function () {
+//    return redirect('/article');
+//});
