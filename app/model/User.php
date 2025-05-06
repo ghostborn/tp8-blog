@@ -26,6 +26,6 @@ class User extends Model
     // 关联文章
     public function articles()
     {
-        return $this->hasMany(Article::class, 'user_id');
+        return $this->hasMany(Article::class, 'user_id','id');
     }
 }

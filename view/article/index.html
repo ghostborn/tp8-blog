@@ -8,12 +8,18 @@
   <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 
   <style>
+      html {
+          scroll-behavior: smooth;
+      }
+
       .article-card {
-          transition: transform 0.2s;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-radius: 0.5rem;
       }
 
       .article-card:hover {
-          transform: translateY(-3px);
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
   </style>
 </head>
@@ -75,7 +81,6 @@
     {/foreach}
   </div>
 </div>
-
-<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js"></script>
+<script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
 </body>
 </html>

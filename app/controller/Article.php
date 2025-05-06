@@ -34,7 +34,8 @@ class Article
         ArticleModel::create([
             'user_id' => Session::get('user_id'),
             'title' => $data['title'],
-            'content' => $data['content']
+            'content' => $data['content'],
+            'created_at' => date('Y-m-d H:i:s')
         ]);
         return redirect('/article')->with('success', '文章创建成功');
     }

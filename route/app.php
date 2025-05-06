@@ -40,3 +40,9 @@ Route::group('article', function () {
 Route::get('/', function () {
     return redirect('/article');
 });
+
+Route::miss(function() {
+    // 记录访问的无效URL
+    trace('访问了不存在的路由: ' . request()->url(), 'warning');
+    return view(app()->getRootPath() . 'view/404.html');
+});
