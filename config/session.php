@@ -13,7 +13,9 @@ return [
     // 存储连接标识 当type使用cache的时候有效
     'store'          => null,
     // 过期时间
-    'expire'         => 1440,
+    'expire'         => 60,
     // 前缀
     'prefix'         => 'blog_',
+    // 是否自动开启 SESSION
+    'auto_start'     => true,
 ];

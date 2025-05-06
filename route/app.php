@@ -25,7 +25,7 @@ Route::group('user', function () {
     Route::get('logout', 'user/logout');
 });
 
-// 文章路由
+// 文章路由（需要登录）
 Route::group('article', function () {
     Route::get('/', 'article/index');
     Route::get('create', 'article/create');

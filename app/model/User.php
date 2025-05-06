@@ -9,6 +9,14 @@ class User extends Model
 {
     protected $table = 'users';
 
+    protected $schema = [
+        'id' => 'int',
+        'username' => 'string',
+        'password' => 'string',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
     // 密码加密
     public function setPasswordAttr($value): string
     {

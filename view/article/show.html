@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$article.title} - 简易博客系统</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+      .article-content { line-height: 1.8; }
+      .article-content img { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/">简易博客</a>
+    <div>
+      <a href="/article/edit/{$article.id}" class="btn btn-sm btn-outline-light me-2">编辑</a>
+      <a href="/article" class="btn btn-sm btn-outline-light">返回列表</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <article class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h1 class="card-title mb-3">{$article.title}</h1>
+      <div class="d-flex justify-content-between text-muted mb-4">
+        <span>作者：{$article.user.username}</span>
+        <span>发布时间：{$article.created_at|date='Y-m-d H:i'}</span>
+      </div>
+      <div class="article-content">
+        {$article.content|raw}
+      </div>
+    </div>
+    <div class="card-footer bg-white">
+      <a href="/article/edit/{$article.id}" class="btn btn-outline-primary">编辑</a>
+      <a href="/article/delete/{$article.id}" class="btn btn-outline-danger" onclick="return confirm('确定删除吗？')">删除</a>
+    </div>
+  </article>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js"></script>
+</body>
+</html>

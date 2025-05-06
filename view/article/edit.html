@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编辑文章 - 简易博客系统</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/">简易博客</a>
+    <div>
+      <a href="/article/{$article.id}" class="btn btn-sm btn-outline-light me-2">返回文章</a>
+      <a href="/article" class="btn btn-sm btn-outline-light">返回列表</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title mb-4">编辑文章</h2>
+
+      <form action="/article/update/{$article.id}" method="post">
+        <div class="mb-3">
+          <label for="title" class="form-label">标题</label>
+          <input type="text" class="form-control" id="title" name="title" value="{$article.title}" required>
+        </div>
+        <div class="mb-3">
+          <label for="content" class="form-label">内容</label>
+          <textarea class="form-control" id="content" name="content" rows="12" required>{$article.content}</textarea>
+        </div>
+        <div class="d-flex justify-content-between">
+          <a href="/article/{$article.id}" class="btn btn-outline-secondary">取消</a>
+          <button type="submit" class="btn btn-primary">更新文章</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js"></script>
+</body>
+</html>
