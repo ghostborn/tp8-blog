@@ -1,86 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文章列表 - 贾斯汀的博客</title>
-  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章列表 - 贾斯汀的博客</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.css" rel="stylesheet">
 
-  <style>
-      html {
-          scroll-behavior: smooth;
-      }
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
 
-      .article-card {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          border-radius: 0.5rem;
-      }
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0.5rem;
+        }
 
-      .article-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-  </style>
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-  <div class="container">
-    <a class="navbar-brand" href="/">贾斯汀的博客</a>
-    <div class="d-flex" style="align-items: baseline;">
-      <span class="navbar-text me-3">欢迎，{$username}</span>
-      <a href="/article/create" class="btn btn-sm btn-outline-light me-2">
-        <i class="bi bi-plus-lg"></i> 写文章
-      </a>
-      <a href="/user/logout" class="btn btn-sm btn-outline-light">
-        <i class="bi bi-box-arrow-right"></i> 退出
-      </a>
+    <div class="container">
+        <a class="navbar-brand" href="/">贾斯汀的博客</a>
+        <div class="d-flex" style="align-items: baseline;">
+            <span class="navbar-text me-3">欢迎，{$username}</span>
+            <a href="/article/create" class="btn btn-sm btn-outline-light me-2">
+                <i class="bi bi-plus-lg"></i> 写文章
+            </a>
+            <a href="/user/logout" class="btn btn-sm btn-outline-light">
+                <i class="bi bi-box-arrow-right"></i> 退出
+            </a>
+        </div>
     </div>
-  </div>
 </nav>
 
 <div class="container">
-  <!-- 操作提示 -->
-  {if isset($success) && $success}
-  <div class="alert alert-success alert-dismissible fade show mb-4">
-    {$success}
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
-  {/if}
-  {if isset($error) && $error}
-  <div class="alert alert-danger alert-dismissible fade show mb-4">
-    {$error}
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
-  {/if}
-
-  <!-- 文章列表 -->
-  <div class="row">
-    {foreach $articles as $article}
-    <div class="col-md-6 mb-4">
-      <div class="article-card card h-100 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">
-            <a href="/article/{$article.id}" class="text-decoration-none">{$article.title}</a>
-          </h5>
-          <div class="d-flex justify-content-between mb-2 text-muted small">
-            <span>作者：{$article.user.username}</span>
-            <span>{$article.created_at|date='Y-m-d H:i'}</span>
-          </div>
-          <p class="card-text text-truncate-3">{$article.summary}</p>
-        </div>
-        <div class="card-footer bg-white">
-          <a href="/article/edit/{$article.id}" class="btn btn-sm btn-outline-primary">编辑</a>
-          <a href="/article/delete/{$article.id}" class="btn btn-sm btn-outline-danger"
-             onclick="return confirm('确定删除吗？')">删除</a>
-          <a href="/article/{$article.id}" class="btn btn-sm btn-outline-secondary float-end">阅读更多</a>
-        </div>
-      </div>
+    <!-- 操作提示 -->
+    {if isset($success) && $success}
+    <div class="alert alert-success alert-dismissible fade show mb-4">
+        {$success}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
-    {/foreach}
-  </div>
+    {/if}
+    {if isset($error) && $error}
+    <div class="alert alert-danger alert-dismissible fade show mb-4">
+        {$error}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {/if}
+
+    <!-- 文章列表 -->
+    <div class="row">
+        {foreach $articles as $article}
+        <div class="col-md-6 mb-4">
+            <div class="article-card card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="/article/{$article.id}" class="text-decoration-none">{$article.title}</a>
+                    </h5>
+                    <div class="d-flex justify-content-between mb-2 text-muted small">
+                        <span>作者：{$article.user.username}</span>
+                        <span>{$article.created_at|date='Y-m-d H:i'}</span>
+                    </div>
+                    <p class="card-text text-truncate-3">{$article.summary}</p>
+                </div>
+                <div class="card-footer bg-white">
+                    <a href="/article/edit/{$article.id}" class="btn btn-sm btn-outline-primary">编辑</a>
+                    <a href="/article/delete/{$article.id}" class="btn btn-sm btn-outline-danger"
+                       onclick="return confirm('确定删除吗？')">删除</a>
+                    <a href="/article/{$article.id}" class="btn btn-sm btn-outline-secondary float-end">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
 </div>
+<script>
+    // 自动关闭所有alert
+    document.addEventListener('DOMContentLoaded', function () {
+        // 获取所有alert元素
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            // 3秒后淡出关闭
+            setTimeout(() => {
+                alert.classList.add('fade');
+                setTimeout(() => {
+                    alert.remove();
+                }, 500); // 匹配Bootstrap的淡出动画时间
+            }, 2000);
+
+            // 保留手动关闭功能
+            alert.querySelector('.btn-close').addEventListener('click', function () {
+                alert.remove();
+            });
+        });
+    });
+</script>
 <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
 </body>
 </html>

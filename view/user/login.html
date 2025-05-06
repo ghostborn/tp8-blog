@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>登录 - 贾斯汀的博客系统</title>
-  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-      body {
-          background-color: #f8f9fa;
-      }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 贾斯汀的博客系统</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
 
-      .login-container {
-          max-width: 400px;
-          margin: 100px auto;
-          padding: 20px;
-          background: #fff;
-          border-radius: 5px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-  </style>
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
 <div class="container">
-  <div class="login-container">
-    <h2 class="text-center mb-4">用户登录</h2>
+    <div class="login-container">
+        <h2 class="text-center mb-4">用户登录</h2>
 
-    {if $error}
-    <div class="alert alert-danger">{$error}</div>
-    {/if}
+        {if $error && $error}
+        <div class="alert alert-danger">{$error}</div>
+        {/if}
 
-    {if $success}
-    <div class="alert alert-success">{$success}</div>
-    {/if}
+        {if $success}
+        <div class="alert alert-success">{$success}</div>
+        {/if}
 
-    <form action="/user/login" method="post">
-      <div class="mb-3">
-        <label for="username" class="form-label">用户名</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">密码</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-      </div>
-      <button type="submit" class="btn btn-primary w-100">登录</button>
-      <div class="mt-3 text-center">
-        <a href="/user/register">还没有账号？立即注册</a>
-      </div>
-    </form>
-  </div>
+        <form action="/user/login" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">用户名</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">密码</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">登录</button>
+            <div class="mt-3 text-center">
+                <a href="/user/register">还没有账号？立即注册</a>
+            </div>
+        </form>
+    </div>
 </div>
+<script>
+    // 自动关闭所有alert
+    document.addEventListener('DOMContentLoaded', function () {
+        // 获取所有alert元素
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(alert => {
+            // 3秒后淡出关闭
+            setTimeout(() => {
+                alert.classList.add('fade');
+                setTimeout(() => {
+                    alert.remove();
+                }, 500); // 匹配Bootstrap的淡出动画时间
+            }, 1000);
+        });
+    });
+</script>
 <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -29,6 +29,8 @@ class User
         }
         $user = UserModel::where('username', $data['username'])->find();
         if ($user && password_verify($data['password'], $user->password)) {
+            $user->updated_at = date('Y-m-d H:i:s');
+            $user->save();
             Session::set('user_id', $user->id);
             Session::set('username', $user->username);
             return redirect('/article')->with('success', '登录成功');
@@ -54,7 +56,8 @@ class User
         }
         $user = UserModel::create([
             'username' => $data['username'],
-            'password' => $data['password']
+            'password' => $data['password'],
+            'created_at' => date('Y-m-d H:i:s')
         ]);
         Session::set('user_id', $user->id);
         Session::set('username', $user->username);
